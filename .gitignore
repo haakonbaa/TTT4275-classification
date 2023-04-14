@@ -1,0 +1,12 @@
+# executables
+*
+!/**/
+!*.*
+
+# Windows :/
+*.exe
+
+# misc
+.vscode
+images/*
+Classification-projects-digits.pdf
