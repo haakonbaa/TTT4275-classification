@@ -8,7 +8,4 @@
 
 # misc
 .vscode
-output/miss
-output/*.bin
-!output/miss/1248is9class_as5.svg
 Classification-projects-digits.pdf

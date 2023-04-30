@@ -4,13 +4,13 @@
 
 clear; clear all; clc;
 
-filename = '7nnW'
+for filename = {'nnW','7nnW','nnC0','7nnC0'}
 
 %% Read the classified data
-
+filename = filename{1}
 file = fopen(sprintf('./output/%s.bin',filename),'r');
 if file == -1
-    display('Could not read')
+    fprintf('Could not read file ./output/%s.bin',filename)
     return
 end
 num = fread(file, 1, 'int32', 'ieee-le');
@@ -40,3 +40,5 @@ for i = 1:10
     correctClass = correctClass + cm(i,i);
 end
 fprintf("correctly classified: %d = %.2f%%\n",correctClass,100*correctClass/size(classified,1))
+
+end

@@ -6,7 +6,7 @@ clear; clear all; clc;
 
 %% Read the classified data
 
-file = fopen('./output/task1_classified.bin','r');
+file = fopen('./output/nnW.bin','r');
 if file == -1
     display('Could not read')
     return
@@ -19,7 +19,7 @@ for i = 1:num
 end
 fclose(file);
 
-%% save some of the missclassified images
+%% save all of the missclassified images
 
 data = load('./input/data_all.mat');
 
