@@ -1,6 +1,8 @@
 %% Read the classified data
 
-file = fopen('./output/task2_classified_nn_nocluster.bin','r');
+filename = 'task2_classified_7nn_cluster'
+
+file = fopen(sprintf('./output/%s.bin',filename),'r');
 if file == -1
     display('Could not read')
     return
@@ -25,53 +27,10 @@ end
 fig = figure('visible','off');
 confusionchart(cm,0:9);
 set(fig, 'Position',[0 0 400 400]);
-saveas(fig,'./output/confusion_matrix_nn_cluster.svg');
+saveas(fig,sprintf('./output/%s.svg',filename));
 
 correctClass = 0;
 for i = 1:10
     correctClass = correctClass + cm(i,i);
 end
 fprintf("correctly classified: %d = %.2f%%\n",correctClass,100*correctClass/size(classified,1))
-
-return
-
-%% save some of the missclassified images
-
-data = load('./input/data_all.mat');
-
-for i = 1:size(classified,1)
-    train_lab = classified(i,1);
-    class_lab = classified(i,2);
-    if train_lab ~= class_lab
-        name = sprintf("./output/miss/%dis%dclass_as%d.svg",i,train_lab, class_lab);
-        fig = figure('Visible','off');
-        displayImage(data.testv(i,:));
-        set(gca, 'xtick', [], 'ytick', [], 'box', 'off','Position',[0.05 0.05 0.9 0.9]);
-        set(fig, 'Position', [400 400 400 400]);
-        saveas(fig, name)
-    end
-end
-
-function displayImage(dimg)
-    img = zeros(28,28);
-    img(:) = dimg;
-    image(img');
-end
-
-function displayImages(img1, img2, name, PADD, RATIO)
-    if nargin < 5
-        RATIO = 2 
-    end
-    if nargin < 4
-        PADD = 0.1 
-    end
-    fig = figure('Visible','off');
-    subplot(1,2,1);
-    displayImage(img1);
-    set(gca, 'xtick', [], 'ytick', [], 'box', 'off','Position',[PADD/RATIO PADD (1-2*PADD)/RATIO (1-2*PADD)]);
-    subplot(1,2,2);
-    displayImage(img2);
-    set(gca, 'xtick', [], 'ytick', [], 'box', 'off','Position',[1-(1-2*PADD)/RATIO-PADD/RATIO PADD (1-2*PADD)/RATIO (1-2*PADD)]);
-    set(fig, 'Position', [0 0 RATIO*400 400]);
-    saveas(fig, name)
-end
