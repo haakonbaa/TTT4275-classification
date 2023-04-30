@@ -16,9 +16,18 @@
 #define DEBUG
 
 static const char USAGE[] = "USAGE:\n\
-  ./classify test-img test-lab train-img train-lab outfile\n\
+  ./classify test-img test-lab train-img \\\n\
+             train-lab outfile [-k=<k>]\n\
   \n\
-  all files should be in the MNIST raw format\n";
+  test-img     path to test images\n\
+  test-lab     path to test labels\n\
+  test-img     path to training images\n\
+  test-lab     path to training labels\n\
+  -k=<k>       the 'k' of the kNN classifier\n\
+               default 1. k >= 1\n\
+  \n\
+  all input files should be in the MNIST format.\n\
+  The out file is on a custom format.\n";
 
 
 int class_from_k_nearest(size_t* distances, int* labels, int K);

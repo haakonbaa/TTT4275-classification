@@ -6,7 +6,25 @@ Compile the classification code with
 gcc -O6 classify.c -I. -o classify
 ```
 
-Remember ```-O6``` for **blazingly** fast execution :). If you want, you can run the classification program. Below are some examples. 
+Remember ```-O6``` for **blazingly** fast execution :). If you want, you can run the classification program. The usage is:
+```txt
+USAGE:
+  ./classify test-img test-lab train-img \
+             train-lab outfile [-k=<k>]
+  
+  test-img     path to test images
+  test-lab     path to test labels
+  test-img     path to training images
+  test-lab     path to training labels
+  -k=<k>       the 'k' of the kNN classifier
+               default 1. k >= 1
+  
+  all input files should be in the MNIST format.
+  The out file is on a custom format.
+```
+
+
+Below are some examples. 
 
 ```
 ./classify input/test_images.bin input/test_labels.bin \
