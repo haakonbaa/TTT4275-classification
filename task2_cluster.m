@@ -1,7 +1,10 @@
+% Generates 10 clusters of M=64 and saves them
+% in the /input/cluster/ directory.
+
 clear; clear all; clc;
 
+%% load data
 
-%% load and cluster data
 data = load('./input/data_all.mat')
 [numofclass, b] = groupcounts(data.trainlab);
 

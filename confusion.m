@@ -1,6 +1,12 @@
-%% Read the classified data
+% Reads a summary of classified images generated
+% from classify.c and outputs the confusion matrix
+% as an .svg in the output directory.
 
-filename = 'task2_classified_7nn_cluster'
+clear; clear all; clc;
+
+filename = '7nnW'
+
+%% Read the classified data
 
 file = fopen(sprintf('./output/%s.bin',filename),'r');
 if file == -1
